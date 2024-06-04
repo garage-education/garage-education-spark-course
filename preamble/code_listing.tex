@@ -1,0 +1,172 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%To define Code Syntax Scala
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Scala
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{ltgray}{rgb}{0.5,0.5,0.5}
+\usepackage{caption} % Add the caption package
+
+% Redefine the lstlisting format to remove the unwanted prefix
+\DeclareCaptionFormat{mylst}{#1#2#3}
+\DeclareCaptionFont{mycolor}{\color{blue}}
+\renewcommand\lstlistingname{Code C}
+\renewcommand\lstlistlistingname{Code C}
+
+\captionsetup[lstlisting]{skip=2pt, font=footnotesize, labelfont={color=blue,footnotesize,bf}, format=mylst,labelsep=colon,justification=raggedright}
+
+\lstset{%
+	frame=tb,
+	language=scala,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add 
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	%  stringstyle=\color{mauve},
+	stringstyle=\color{myorange},
+	frame=single,
+	breaklines=true,
+	breakatwhitespace=true,
+	breakindent=20pt,
+	tabsize=4,
+	frameround=tttt,
+	escapeinside={\%*}{*)},        % to add a comment within your code
+	emph={count,take,textFile,filter,first,collect,mkString}, % Scala functions
+	emphstyle={\color{mauve}},
+	morekeywords ={val,sc},        % to add more keywords to the set  
+	showspaces=false,
+	showstringspaces=false,
+	keepspaces=true
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\lstset{%
+	language=SQL,
+	backgroundcolor=\color{white},
+	basicstyle=\footnotesize,
+	%breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it's 1, each line will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	commentstyle=\color{dkgreen},
+	%deletekeywords={...},
+	%escapeinside={\%*}{*)},
+	%extendedchars=true,
+	frame=tb,
+	keepspaces=false,
+	keywordstyle=\color{blue},
+	morekeywords={modify,MODIFY,ALL, ALTER, AND, ARRAY, AS, AUTHORIZATION, BETWEEN, BIGINT, BINARY, BOOLEAN, BOTH, BY, CASE, CAST, CHAR, COLUMN, CONF, CREATE, CROSS, CUBE, CURRENT, CURRENT_DATE, CURRENT_TIMESTAMP, CURSOR, DATABASE, DATE, DECIMAL, DELETE, DESCRIBE, DISTINCT, DOUBLE, DROP, ELSE, END, EXCHANGE, EXISTS, EXTENDED, EXTERNAL, FALSE, FETCH, FLOAT, FOLLOWING, FOR, FROM, FULL, FUNCTION, GRANT, GROUP, GROUPING, HAVING, IF, IMPORT, IN, INNER, INSERT, INT, INTERSECT, INTERVAL, INTO, IS, JOIN, LATERAL, LEFT, LESS, LIKE, LOCAL, MACRO, MAP, MORE, NONE, NOT, NULL, OF, ON, OR, ORDER, OUT, OUTER, OVER, PARTIALSCAN,PARTITIONED, STORED, TERMINATED, ROW, FORMAT, PARTITION,PERCENT, PRECEDING, PRESERVE, PROCEDURE, RANGE, READS, REDUCE, REVOKE, RIGHT, ROLLUP, ROW, ROWS, SELECT, SET, SMALLINT, TABLE, TABLESAMPLE, THEN, TIMESTAMP, TO, TRANSFORM, TRIGGER, TRUE, TRUNCATE, UNBOUNDED, UNION, UNIQUEJOIN, UPDATE, USER, USING, UTC_TMESTAMP, VALUES, VARCHAR, WHEN, WHERE, WINDOW, WITH, BY},
+	numbers=left,
+	numbersep=15pt,
+	numberstyle=\tiny,
+	rulecolor=\color{ltgray},
+	showstringspaces=false,
+	showtabs=false,
+	stepnumber=1,
+	tab=2,
+	literate={\ \ }{{\ }}1,
+	keepspaces=true,
+	showtabs=false,
+	caption=Example SQL Query,
+	showspaces=false,
+	xleftmargin=4.0ex,	
+	keepspaces=true
+}
+%%%%%%%%%%YML 
+\lstdefinestyle{yaml}{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+	morekeywords={Name, Type, Operations, Condition,TableName},
+    keywordstyle=\color{blue},
+    morestring=[b]",
+    stringstyle=\color{red},
+    keepspaces=true
+}
+
+\lstdefinelanguage{my-yaml}{
+  keywords={spec, containers, name,Type,TableName,PruningEnabled,PruningEnabled,RelevantBuckets,Condition}, % ,... all the keyword you want
+  keywordstyle=\color{blue}\bfseries,
+  moredelim=[is][commentstyle]{||}{££}, % invisible custom delimiters
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{olive}\ttfamily,
+  stringstyle=\color{orange}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstdefinestyle{my-yamll}{	
+     basicstyle=\color{black}\footnotesize,
+     rulecolor=\color{blue},
+     string=[s]{'}{'},
+     stringstyle=\color{black},
+     comment=[l]{:},
+     commentstyle=\color{blue},
+     morecomment=[l]{-}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\JSONnumbervaluestyle{\color{red}}
+\newcommand\JSONstringvaluestyle{\color{red}}
+
+% switch used as state variable
+\newif\ifcolonfoundonthisline
+
+\makeatletter
+
+\lstdefinestyle{json}
+{
+	showstringspaces    = false,
+	keywords            = {false,true},
+alsoletter          = 0123456789.,
+morestring          = [s]{"}{"},
+framextopmargin=3pt,
+stringstyle         = \ifcolonfoundonthisline\JSONstringvaluestyle\fi,
+MoreSelectCharTable =%
+	\lst@DefSaveDef{`:}\colon@json{\processColon@json},
+basicstyle          = \ttfamily,
+keywordstyle        = \ttfamily\bfseries,
+}
+
+% flip the switch if a colon is found in Pmode
+\newcommand\processColon@json{%
+	\colon@json%
+	\ifnum\lst@mode=\lst@Pmode%
+	\global\colonfoundonthislinetrue%
+	\fi
+}
+
+\lst@AddToHook{Output}{%
+	\ifcolonfoundonthisline%
+	\ifnum\lst@mode=\lst@Pmode%
+	\def\lst@thestyle{\JSONnumbervaluestyle}%
+	\fi
+	\fi
+%override by keyword style if a keyword is detected!
+	\lsthk@DetectKeywords% 
+}
+
+% reset the switch at the end of line
+\lst@AddToHook{EOL}%
+{\global\colonfoundonthislinefalse}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:

@@ -1,0 +1,51 @@
+\documentclass[t,14pt,aspectratio=169,usenames,dvipsnames,table]{beamer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To Pass graphics paths
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graphicspath{{./Figures/}}
+\input{preamble/preamble}
+\input{./front_page}
+\renewcommand{\logotitle}{\includegraphics%
+	[width=.2\linewidth]{logos/header_logo}}
+\renewcommand{\logoheader}{\includegraphics%
+	[width=0\linewidth]{logos/header_logo}}
+\renewcommand{\logofooter}{\includegraphics%
+	[width=.15\linewidth]{logos/header_logo}}
+\date{\today}
+
+%------------------------------------------------------------
+\begin{document}
+    %---------------------------------------------------------
+    %The next statement creates the title page.
+    \frame{\titlepage}
+    %---------------------------------------------------------
+    %%TOC
+	%\begin{frame}[allowframebreaks]
+	%\frametitle{Table of Contents}
+	%\tableofcontents
+	%\end{frame}
+    %---------------------------------------------------------
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{chapters/chapter-example}
+
+
+\begin{frame}[c]{ }
+    \centering     
+   
+    \textcolor{offgreen}{ \large Thank you for watching!}
+\end{frame}
+
+
+\begin{frame}[c]{ }
+    \centering 
+    \textcolor{offyellow}{\large See you in the next video \Smiley{}}
+\end{frame}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-engine: xetex
+%%% End:

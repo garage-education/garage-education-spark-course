@@ -1,0 +1,102 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages Definition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{preamble/ch_01_theme}
+%\usepackage{preamble/dbt}
+\usetheme[showmaxslides]{pureminimalistic}
+%\usetheme[darkmode, showmaxslides]{pureminimalistic}
+
+
+
+
+
+\newcommand{\code}[1]{\mbox{\color{yellow}{\texttt{\textbf{\normalsize #1}}}}}
+\usepackage[toc,page]{appendix}
+\usepackage{listings}
+
+\usepackage{pgf,pgfpages}
+\usepackage{graphicx}
+\usepackage{units}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{xspace}
+\usepackage{textcomp}% for '\textdegree' macro
+\usepackage{utopia} %font utopia imported
+\usepackage{fontawesome5}
+\usepackage{subcaption}
+\usepackage{gensymb}
+\usepackage{adjustbox}
+\usepackage{marginnote}
+\usepackage{makecell}
+\usepackage{textpos}
+\usepackage[default]{lato}
+\usepackage[font=small,skip=0pt]{caption}
+\usepackage{xcolor,colortbl}
+\usepackage{import}
+\usepackage{marvosym}
+\usepackage{ulem} %Strikethrough
+\usepackage[inkscapelatex=false]{svg}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+%\BeforeBeginEnvironment{figure}{\vspace{-1em}}
+%\BeforeBeginEnvironment{lstlisting}{\vspace{-1em}}
+\BeforeBeginEnvironment{table}{\vspace{-1em}}
+\usepackage{hyperref}
+% Define hyperlink colors and underline
+\hypersetup{
+    colorlinks = true, % Enables coloring of links
+    urlcolor = blue, % Color for external hyperlinks
+    linkcolor = red, % Color for internal links
+    citecolor = green, % Color for citations
+    pdfborder = {0 0 0}, % Removes border around links
+}
+
+% Ensure hyperref uses the ulem package for underlining
+\renewcommand{\ULthickness}{1pt} % Adjust underline thickness if desired
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{\uline{#2}}} % Underline hyperlinks
+
+%\usepackage{enumitem}
+\DeclareCaptionLabelFormat{nospace}{#1#2}
+\captionsetup[table]{skip=1pt,font=footnotesize,labelfont={color=blue,footnotesize,bf},name=Table T-,labelformat=nospace,labelsep=colon}
+\captionsetup[figure]{skip=1pt,font=footnotesize,labelfont={color=blue,footnotesize,bf},name=Figure F-,labelformat=nospace,labelsep=colon}
+
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17} % or the version that matches your pgfplots installation
+
+
+%\overfullrule=2cm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/preamble_quote_custom_commands.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/preamble_custom_commands.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/tikz_preamble.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/code_listing.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz,lipsum,fontspec}
+\usetikzlibrary{shapes.callouts,decorations.pathmorphing}
+\input{preamble/presentation-mode.tex}
+
+\AtBeginDocument{
+  \catcode`_=12
+  \begingroup\lccode`~=`_
+  \lowercase{\endgroup\let~}\sb
+  \mathcode`_="8000
+}
+\setbeamercolor{caption name}{fg=orange}
+\setlength{\belowcaptionskip}{10pt}
+
+\setbeamertemplate{itemize/enumerate body begin}{\small}
+%\setbeamertemplate{navigation symbols}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\addtobeamertemplate{frametitle}{}{\vspace{-0.3 cm}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:

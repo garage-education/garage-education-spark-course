@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pgfkeys}
+\usepackage{smartdiagram}
+\usepackage{venndiagram}
+\usepackage{graphics}
+\usepackage{tikz}
+\usesmartdiagramlibrary{additions}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shadows}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shapes.geometric} % required in the preamble
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{fit,backgrounds}
+\usepackage{tikz-qtree}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/tikz_preamble_flow_design.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Database
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/tikz_preamble_db_design.tex}
+
+
+\input{preamble/tikz_preamble_server_design.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To define sime custom colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{green-yellow}{rgb}{0.68, 1.0, 0.18}
+\definecolor{harvardcrimson}{rgb}{0.79, 0.0, 0.09}
+\definecolor{spirodiscoball}{rgb}{0.06, 0.75, 0.99}
+\definecolor{uiborange}{RGB}{217, 89, 0}
+\definecolor{MyGray}{rgb}{.9, .9, .9}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+\definecolor{mygreen}{rgb}{0,0.8,0.6}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{Gray}{gray}{0.85}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\definecolor{alizarin}{rgb}{0.82, 0.1, 0.26}
+\definecolor{auburn}{rgb}{0.43, 0.21, 0.1}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{almond}{rgb}{0.94, 0.87, 0.8}
+\definecolor{darkgray}{rgb}{.34,.34,.34}
+\definecolor{offwhite}{HTML}{c7c7c7}
+\definecolor{offpurple}{HTML}{e9b0df}
+\definecolor{offred}{HTML}{ff6363}
+\definecolor{offyellow}{HTML}{e1e099}
+\definecolor{offgreen}{HTML}{a7d129}
+\definecolor{offpink}{HTML}{f638dc}
+\definecolor{lemon}{HTML}{a7d129}
+
+\definecolor{offgreen2}{HTML}{29c7ac}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%circle inside table
+\newcommand*\redcircled{\tikz\draw[red,fill=red] (0,0) circle (.5ex);}
+\newcommand*\bluecircled{\tikz\draw[blue,fill=blue] (0,0) circle (.5ex);}
+\newcommand*\greencircled{\tikz\draw[green,fill=green] (0,0) circle (.5ex);}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/tikz_preamble_video_classification.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{preamble/tikz_preamble_system_design.tex}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../main"
+% !TeX root = ../main.tex
+%%% TeX-engine: xetex
+%%% End:
