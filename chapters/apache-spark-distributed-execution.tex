@@ -178,138 +178,134 @@ val sqlContext = new org.apache.spark.sql.SQLContext(sc)
 
 \end{frame}
 
-
-\begin{frame}[fragile]
-    \frametitle{Simplification in Spark 2.0 with SparkSession}
-
-    \begin{itemize}
-        \item Spark 2.0 introduced SparkSession, simplifying the way you interact with Spark.
-        \item SparkSession encapsulates SparkConf, SparkContext, and SQLContext.
-    \end{itemize}
-
-    \begin{lstlisting}[language=Python,label={lst:spark-session-python-example},caption={Pyspark: Create SparkSession}]
-from pyspark.sql import SparkSession
-
-spark = SparkSession.builder \
-    .appName("SparkSessionExample") \
-    .config("spark.some.config.option", "value") \
-    .getOrCreate()
-    \end{lstlisting}
-
-\end{frame}
-\begin{frame}[fragile]
-    \frametitle{Simplification in Spark 2.0 with SparkSession}
-    \begin{lstlisting}[language=Scala,label={lst:spark-session-scala-example},caption={Spark: Create SparkSession}]
-// Create a SparkSession. No need to create SparkContext.
-val warehouseLocation = "file:${system:user.dir}/spark-warehouse"
-val spark = SparkSession
-   .builder()
-   .appName("SparkSessionZipsExample")
-   .config("spark.sql.warehouse.dir", warehouseLocation)
-   .enableHiveSupport()
-   .getOrCreate()
-    \end{lstlisting}
-\end{frame}
-
+%
+%
+%\begin{frame}[fragile]
+%    \frametitle{Simplification in Spark 2.0 with SparkSession}
+%
+%    \begin{itemize}
+%        \item Spark 2.0 introduced SparkSession, simplifying the way you interact with Spark.
+%        \item SparkSession encapsulates SparkConf, SparkContext, and SQLContext.
+%    \end{itemize}
+%
+%    \begin{lstlisting}[language=Python,label={lst:spark-session-python-example},caption={Pyspark: Create SparkSession}]
+%from pyspark.sql import SparkSession
+%
+%spark = SparkSession.builder \
+%    .appName("SparkSessionExample") \
+%    .config("spark.some.config.option", "value") \
+%    .getOrCreate()
+%    \end{lstlisting}
+%\end{frame}
+%
+%\begin{frame}[fragile]
+%    \frametitle{Simplification in Spark 2.0 with SparkSession}
+%    \begin{lstlisting}[language=Scala,label={lst:spark-session-scala-example},caption={Spark: Create SparkSession}]
+%// Create a SparkSession. No need to create SparkContext.
+%val warehouseLocation = "file:${system:user.dir}/spark-warehouse"
+%val spark = SparkSession
+%   .builder()
+%   .appName("SparkSessionZipsExample")
+%   .config("spark.sql.warehouse.dir", warehouseLocation)
+%   .enableHiveSupport()
+%   .getOrCreate()
+%    \end{lstlisting}
+%\end{frame}
+%
 \begin{frame}
     \frametitle{Using SparkSession}
-
     \begin{itemize}
-
         \item Spark 2.0 introduces SparkSession.
         \item With SparkSession, you can access all Spark functionalities.
         \item A unified entry point to Spark's functionality, reduces the need for multiple context initializations.
         \item Encapsulates the functionalities of SQLContext, HiveContext, and more.
     \end{itemize}
-
 \end{frame}
-
-\begin{frame}
-    \frametitle{Reference}
-
-    \begin{itemize}
-        \item The examples shown are based on a blog post from Databricks.
-        \item URL: \url{https://www.databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html}
-    \end{itemize}
-
-\end{frame}
-
-%Ch.04-16   | Spark Cluster Manager
-
-\subsection{Cluster manager}\label{subsec:cluster-manager}
-
-\begin{frame}
-    \frametitle{Introduction to Spark Cluster Managers}
-    \begin{itemize}
-        \item The cluster manager allocates resources for Spark applications.
-        \item Supports several managers: Standalone, Hadoop YARN, Apache Mesos, and Kubernetes.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Role of the Cluster Manager}
-    \begin{itemize}
-        \item The Spark Driver and Executors do not exist in a void, and this is where the cluster manager
-        comes in.
-        \item The cluster manager is important for managing a cluster of machines intended to run Spark Applications.
-        \item Maintains a \texttt{driver (or master)} and \texttt{worker} nodes, tied to \textbf{physical machines}.
-    \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Cluster Manager Components}
-    \begin{figure}
-        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/cluster_manager_processes}
-        \caption{A cluster driver and worker (no Spark Application yet).}\label{fig:cluster_manager_processes}
-    \end{figure}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Execution of Spark Applications}
-    \begin{itemize}
-        \item The user requests resources from the cluster manager to initiate Spark applications.
-        \item The user configures the application to specify resources for the driver or only for executors.
-        \item The cluster manager directly manages the machines during the execution of the application.
-    \end{itemize}
-\end{frame}
-
-% Ch.04-17   | Spark Execution Mode
-
-\subsection{Execution Modes}\label{subsec:deployment-mode}
-\begin{frame}
-    \frametitle{Execution Modes Overview}
-    \begin{itemize}
-        \item Execution modes define the location of resources when running Spark applications.
-        \item Three modes available:
-        \begin{enumerate}
-            \item Cluster mode
-            \item Client mode
-            \item Local mode
-        \end{enumerate}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Cluster Manager Components}
-    \begin{figure}
-        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/cluster_manager_processes}
-        \caption{A cluster driver and worker (no Spark Application yet).}\label{fig:cluster-manager-components}
-    \end{figure}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Cluster Mode}
-    \begin{itemize}
-        \item Most common mode for running Spark Applications.
-        \item User submits a pre-compiled JAR, Python script, or R script to a cluster manager.
-        \item The cluster manager then launches the driver process on a worker node inside the cluster.
-        \item Executor processes also launched within the cluster.
-        \item Cluster manager handles all Spark Application processes.
-        \item This means that the cluster manager is responsible for maintaining all Spark Application–related processes.
-    \end{itemize}
-\end{frame}
-
+%
+%\begin{frame}
+%    \frametitle{Reference}
+%    \begin{itemize}
+%        \item The examples shown are based on a blog post from Databricks.
+%        \item URL: \url{https://www.databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html}
+%    \end{itemize}
+%\end{frame}
+%
+%%Ch.04-16   | Spark Cluster Manager
+%
+%\subsection{Cluster manager}\label{subsec:cluster-manager}
+%
+%\begin{frame}
+%    \frametitle{Introduction to Spark Cluster Managers}
+%    \begin{itemize}
+%        \item The cluster manager allocates resources for Spark applications.
+%        \item Supports several managers: Standalone, Hadoop YARN, Apache Mesos, and Kubernetes.
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Role of the Cluster Manager}
+%    \begin{itemize}
+%        \item The Spark Driver and Executors do not exist in a void, and this is where the cluster manager
+%        comes in.
+%        \item The cluster manager is important for managing a cluster of machines intended to run Spark Applications.
+%        \item Maintains a \texttt{driver (or master)} and \texttt{worker} nodes, tied to \textbf{physical machines}.
+%    \end{itemize}
+%\end{frame}
+%
+%
+%\begin{frame}
+%    \frametitle{Cluster Manager Components}
+%    \begin{figure}
+%        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/cluster_manager_processes}
+%        \caption{A cluster driver and worker (no Spark Application yet).}\label{fig:cluster_manager_processes}
+%    \end{figure}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Execution of Spark Applications}
+%    \begin{itemize}
+%        \item The user requests resources from the cluster manager to initiate Spark applications.
+%        \item The user configures the application to specify resources for the driver or only for executors.
+%        \item The cluster manager directly manages the machines during the execution of the application.
+%    \end{itemize}
+%\end{frame}
+%
+%% Ch.04-17   | Spark Execution Mode
+%
+%\subsection{Execution Modes}\label{subsec:deployment-mode}
+%\begin{frame}
+%    \frametitle{Execution Modes Overview}
+%    \begin{itemize}
+%        \item Execution modes define the location of resources when running Spark applications.
+%        \item Three modes available:
+%        \begin{enumerate}
+%            \item Cluster mode
+%            \item Client mode
+%            \item Local mode
+%        \end{enumerate}
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Cluster Manager Components}
+%    \begin{figure}
+%        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/cluster_manager_processes}
+%        \caption{A cluster driver and worker (no Spark Application yet).}\label{fig:cluster-manager-components}
+%    \end{figure}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Cluster Mode}
+%    \begin{itemize}
+%        \item Most common mode for running Spark Applications.
+%        \item User submits a pre-compiled JAR, Python script, or R script to a cluster manager.
+%        \item The cluster manager then launches the driver process on a worker node inside the cluster.
+%        \item Executor processes also launched within the cluster.
+%        \item Cluster manager handles all Spark Application processes.
+%        \item This means that the cluster manager is responsible for maintaining all Spark Application–related processes.
+%    \end{itemize}
+%\end{frame}
+%
 \begin{frame}
     \frametitle{Spark Cluster Mode}
     \begin{figure}
@@ -317,11 +313,11 @@ val spark = SparkSession
         \caption{Spark’s cluster mode.}\label{fig:cluster_mode}
     \end{figure}
 \end{frame}
-
+%
 \begin{frame}
     \frametitle{Client Mode}
     \begin{itemize}
-        \item Similar to cluster mode, but the  \textbf{\texttt{Spark driver remains on the client
+        \item Similar to cluster mode, but the \textbf{\texttt{Spark driver remains on the client
         machine that submitted the application}}.
         \item \textbf{Client machine} is responsible for maintaining the Spark driver process.
         \item \textbf{Cluster manager} maintains executor processes.
@@ -329,7 +325,7 @@ val spark = SparkSession
         \item The driver is running on a machine outside of the cluster but that the workers are located on machines in the cluster.
     \end{itemize}
 \end{frame}
-
+%
 \begin{frame}
     \frametitle{Spark Client Mode}
     \begin{figure}
@@ -337,7 +333,7 @@ val spark = SparkSession
         \caption{Spark’s client mode.}\label{fig:client_mode}
     \end{figure}
 \end{frame}
-
+%
 \begin{frame}
     \frametitle{Local Mode}
     \begin{itemize}
@@ -767,40 +763,44 @@ def coalesce(numPartitions: Int, shuffle: Boolean = false,
         \end{itemize}
     \end{itemize}
 \end{frame}
-%
-%\subsection{Understanding Spark Application Concepts}\label{subsec:understanding-spark-application-concepts}
-%
-%\begin{frame}
-%    \frametitle{Understanding Spark Application Concepts}
-%    \begin{itemize}
-%        \item \textbf{Job}: A parallel computation consisting of multiple tasks that gets spawned in response
-%        to a Spark action (e.g., save(), collect()).
-%        \item \textbf{Stage}: Each job gets divided into smaller sets of tasks called stages that depend on each
-%        other.
-%        \item \textbf{Task}: A single unit of work or execution that will be sent to a Spark executor.
-%    \end{itemize}
-%\end{frame}
-%\begin{frame}
-%    \frametitle{Spark Jobs}
-%    \begin{figure}
-%        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/spark_job}
-%        \caption{Spark driver creating one or more Spark jobs.}\label{fig:spark_job}
-%    \end{figure}
-%\end{frame}
-%\begin{frame}
-%    \frametitle{Spark Stages}
-%    \begin{figure}
-%        \includegraphics[width=\textwidth,height=.65\textheight,keepaspectratio]{./Figures/chapter-04/Spark_Stages}
-%        \caption{Spark job creating one or more stages}\label{fig:spark_stages}
-%    \end{figure}
-%\end{frame}
-%\begin{frame}
-%    \frametitle{Spark Stages}
-%    \begin{figure}
-%        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/Spark_Stage}
-%        \caption{Spark stage creating one or more tasks to be distributed to executors}\label{fig:spark_stage}
-%    \end{figure}
-%\end{frame}
+
+\subsection{Understanding Spark Application Concepts}\label{subsec:understanding-spark-application-concepts}
+
+\begin{frame}
+    \frametitle{Understanding Spark Application Concepts}
+    \begin{itemize}
+        \item \textbf{Job}: A parallel computation consisting of multiple tasks that gets spawned in response
+        to a Spark action (e.g., save(), collect()).
+        \item \textbf{Stage}: Each job gets divided into smaller sets of tasks called stages that depend on each
+        other.
+        \item \textbf{Task}: A single unit of work or execution that will be sent to a Spark executor.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Jobs}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/spark_job}
+        \caption{Spark driver creating one or more Spark jobs.}\label{fig:spark_job}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Stages}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.65\textheight,keepaspectratio]{./Figures/chapter-04/Spark_Stages}
+        \caption{Spark job creating one or more stages}\label{fig:spark_stages}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Spark Stages}
+    \begin{figure}
+        \includegraphics[width=\textwidth,height=.7\textheight,keepaspectratio]{./Figures/chapter-04/Spark_Stage}
+        \caption{Spark stage creating one or more tasks to be distributed to executors}\label{fig:spark_stage}
+    \end{figure}
+\end{frame}
+
 %\begin{frame}
 %    \frametitle{Spark Tasks}
 %    \begin{figure}
