@@ -145,25 +145,25 @@
     \end{itemize}
 \end{frame}
 
-%
-%\begin{frame}[fragile]
-%    \frametitle{Interacting with Spark in Earlier Versions}
-%
-%    \begin{itemize}
-%        \item In earlier versions of Spark, setting up a Spark application required creating a SparkConf and SparkContext.
-%    \end{itemize}
-%
-%    \begin{lstlisting}[language=Python,label={lst:pyspark-spark-context},caption={Create SparkContext in old Spark versions}]
-%from pyspark import SparkConf, SparkContext
-%from pyspark.sql import SQLContext
-%
-%sparkConf = SparkConf().setAppName("SparkSessionExample").setMaster("local")
-%sc = SparkContext(conf=sparkConf)
-%sqlContext = SQLContext(sc)
-%    \end{lstlisting}
-%
-%\end{frame}
-%
+
+\begin{frame}[fragile]
+    \frametitle{Interacting with Spark in Earlier Versions}
+
+    \begin{itemize}
+        \item In earlier versions of Spark, setting up a Spark application required creating a SparkConf and SparkContext.
+    \end{itemize}
+
+    \begin{lstlisting}[language=Python,label={lst:pyspark-spark-context},caption={Create SparkContext in old Spark versions}]
+from pyspark import SparkConf, SparkContext
+from pyspark.sql import SQLContext
+
+sparkConf = SparkConf().setAppName("SparkSessionExample").setMaster("local")
+sc = SparkContext(conf=sparkConf)
+sqlContext = SQLContext(sc)
+    \end{lstlisting}
+
+\end{frame}
+
 %
 %\begin{frame}[fragile]
 %    \frametitle{Interacting with Spark in Earlier Versions}
