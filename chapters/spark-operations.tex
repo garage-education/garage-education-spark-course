@@ -255,49 +255,49 @@ def repartition(numPartitions: Int)(implicit ord: Ordering[T] = null): RDD[T] = 
     \end{itemize}
 \end{frame}
 
-%\begin{frame}[fragile]
-%    \frametitle{High-Level Code: Coalesce}
+\begin{frame}[fragile]
+    \frametitle{High-Level Code: Coalesce}
+
+    \begin{lstlisting}[language=scala,basicstyle=\tiny,label={lst:coalesce},caption={Coalesce Code}]
+def coalesce(numPartitions: Int, shuffle: Boolean = false,
+             partitionCoalescer: Option[PartitionCoalescer] = Option.empty)
+            (implicit ord: Ordering[T] = null): RDD[T] = withScope {
+  require(numPartitions > 0, s"Number of partitions ($numPartitions) must be positive.")
+  if (shuffle) {
+    // Shuffle logic
+    val distributePartition = (index: Int, items: Iterator[T]) => {
+      var position = new XORShiftRandom(index).nextInt(numPartitions)
+      items.map { t =>
+        position = position + 1
+        (position, t)
+      }
+    } : Iterator[(Int, T)]
+    new CoalescedRDD(new ShuffledRDD[Int, T, T](
+        mapPartitionsWithIndexInternal(distributePartition, isOrderSensitive = true),
+        new HashPartitioner(numPartitions)),
+      numPartitions,
+      partitionCoalescer).values
+  } else {
+    // No-shuffle logic
+    new CoalescedRDD(this, numPartitions, partitionCoalescer)
+  }
+}
+    \end{lstlisting}
+
+\end{frame}
 %
-%    \begin{lstlisting}[language=scala,basicstyle=\tiny,label={lst:coalesce},caption={Coalesce Code}]
-%def coalesce(numPartitions: Int, shuffle: Boolean = false,
-%             partitionCoalescer: Option[PartitionCoalescer] = Option.empty)
-%            (implicit ord: Ordering[T] = null): RDD[T] = withScope {
-%  require(numPartitions > 0, s"Number of partitions ($numPartitions) must be positive.")
-%  if (shuffle) {
-%    // Shuffle logic
-%    val distributePartition = (index: Int, items: Iterator[T]) => {
-%      var position = new XORShiftRandom(index).nextInt(numPartitions)
-%      items.map { t =>
-%        position = position + 1
-%        (position, t)
-%      }
-%    } : Iterator[(Int, T)]
-%    new CoalescedRDD(new ShuffledRDD[Int, T, T](
-%        mapPartitionsWithIndexInternal(distributePartition, isOrderSensitive = true),
-%        new HashPartitioner(numPartitions)),
-%      numPartitions,
-%      partitionCoalescer).values
-%  } else {
-%    // No-shuffle logic
-%    new CoalescedRDD(this, numPartitions, partitionCoalescer)
-%  }
-%}
-%    \end{lstlisting}
-%
-%\end{frame}
-%
-%\begin{frame}[fragile]
-%    \frametitle{High-Level Code: Coalesce}
-%    \begin{itemize}
-%        \item \textbf{Key Points}:
-%        \begin{itemize}
-%            \item \textbf{Shuffle}: Optional; can perform a shuffle if `shuffle = true`.
-%            \item \textbf{No Shuffle}: Default behavior (without shuffle) merges partitions locally.
-%            \item \textbf{Usage}: Efficient for reducing the number of partitions without shuffling.
-%        \end{itemize}
-%    \end{itemize}
-%\end{frame}
-%
+\begin{frame}[fragile]
+    \frametitle{High-Level Code: Coalesce}
+    \begin{itemize}
+        \item \textbf{Key Points}:
+        \begin{itemize}
+            \item \textbf{Shuffle}: Optional; can perform a shuffle if `shuffle = true`.
+            \item \textbf{No Shuffle}: Default behavior (without shuffle) merges partitions locally.
+            \item \textbf{Usage}: Efficient for reducing the number of partitions without shuffling.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
 %
 %
 %
