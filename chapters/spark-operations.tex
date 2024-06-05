@@ -177,41 +177,41 @@
     \end{itemize}
 \end{frame}
 
-%\subsection{Repartition vs. Coalesce}\label{subsec:repartition-vs-coalesce}
-%\begin{frame}
-%    \frametitle{Repartition vs. Coalesce}
-%    \begin{itemize}
-%        \item In Apache Spark, repartition and coalesce are two methods used to change the number of partitions in an RDD (Resilient
-%        Distributed Dataset).
-%    \end{itemize}
-%\end{frame}
-%
-%\begin{frame}
-%    \frametitle{Repartition vs. Coalesce}
-%
-%    \begin{table}[h!]
-%        \centering
-%        \resizebox{\textwidth}{!}{%
-%            \begin{tabular}{|p{2cm} |p{6cm} |p{6cm} |}
-%                \hline
-%                \rowcolor{Gray}
-%                \hline
-%                \textbf{Aspect}    & \textbf{Repartition}                                                                                                & \textbf{Coalesce}                                                                                                         \\
-%                \hline
-%                \textbf{Purpose}   & \textcolor{blue}{Increases or decreases} the number of partitions. & \textcolor{blue}{Decreases} the number of partitions. \\
-%                \hline
-%                \textbf{Mechanism} & \textcolor{blue}{Shuffles all} the data across the network to create a new set of partitions. & \textcolor{blue}{Merges existing} partitions \textcolor{blue}{without} a full data shuffle. \\
-%                \hline
-%                \textbf{Use Case}  & Ideal for increasing the number of partitions or significantly \textcolor{blue}{changing the distribution} of data. & Efficient for \textcolor{blue}{reducing the number} of partitions when the target number is less than the current number. \\
-%                \hline
-%                \textbf{Cost}      & Expensive due to the \textcolor{blue}{full data shuffle}.                                                         & Less expensive than \texttt{repartition} as it \textcolor{blue}{minimizes data movement}.                               \\
-%                \hline
-%            \end{tabular}
-%        }
-%        \caption{Comparison of Repartition and Coalesce in Apache Spark}\label{tab:rerepartition-coalesce}
-%    \end{table}
-%\end{frame}
-%
+\subsection{Repartition vs. Coalesce}\label{subsec:repartition-vs-coalesce}
+\begin{frame}
+    \frametitle{Repartition vs. Coalesce}
+    \begin{itemize}
+        \item In Apache Spark, repartition and coalesce are two methods used to change the number of partitions in an RDD (Resilient
+        Distributed Dataset).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Repartition vs. Coalesce}
+
+    \begin{table}[h!]
+        \centering
+        \resizebox{\textwidth}{!}{%
+            \begin{tabular}{|p{2cm} |p{6cm} |p{6cm} |}
+                \hline
+                \rowcolor{Gray}
+                \hline
+                \textbf{Aspect}    & \textbf{Repartition}  & \textbf{Coalesce} \\
+                \hline
+                \textbf{Purpose}   & \textcolor{blue}{Increases or decreases} the number of partitions. & \textcolor{blue}{Decreases} the number of partitions. \\
+                \hline
+                \textbf{Mechanism} & \textcolor{blue}{Shuffles all} the data across the network to create a new set of partitions. & \textcolor{blue}{Merges existing} partitions \textcolor{blue}{without} a full data shuffle. \\
+                \hline
+                \textbf{Use Case}  & Ideal for increasing the number of partitions or significantly \textcolor{blue}{changing the distribution} of data. & Efficient for \textcolor{blue}{reducing the number} of partitions when the target number is less than the current number. \\
+                \hline
+                \textbf{Cost}      & Expensive due to the \textcolor{blue}{full data shuffle}. & Less expensive than \texttt{repartition} as it \textcolor{blue}{minimizes data movement}. \\
+                \hline
+            \end{tabular}
+        }
+        \caption{Comparison of Repartition and Coalesce in Apache Spark}\label{tab:rerepartition-coalesce}
+    \end{table}
+\end{frame}
+
 %\begin{frame}[fragile]
 %    \frametitle{High-Level Code: Repartition}
 %    \begin{lstlisting}[language=scala,label={lst:rep-partition},caption={Repartition Code}]
