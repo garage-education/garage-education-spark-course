@@ -212,50 +212,49 @@
     \end{table}
 \end{frame}
 
-%\begin{frame}[fragile]
-%    \frametitle{High-Level Code: Repartition}
-%    \begin{lstlisting}[language=scala,label={lst:rep-partition},caption={Repartition Code}]
-%def repartition(numPartitions: Int)(implicit ord: Ordering[T] = null): RDD[T] = withScope {
-%  coalesce(numPartitions, shuffle = true)
-%}
-%    \end{lstlisting}
-%    \begin{itemize}
-%        \item \textbf{Key Points}:
-%        \begin{itemize}
-%            \item \textbf{Shuffle}: Always performs a shuffle by calling `coalesce` with `shuffle = true`.
-%            \item \textbf{Usage}: Suitable for both increasing and decreasing the number of partitions with even data distribution.
-%        \end{itemize}
-%    \end{itemize}
-%\end{frame}
+\begin{frame}[fragile]
+    \frametitle{High-Level Code: Repartition}
+    \begin{lstlisting}[language=scala,label={lst:rep-partition},caption={Repartition Code}]
+def repartition(numPartitions: Int)(implicit ord: Ordering[T] = null): RDD[T] = withScope {
+  coalesce(numPartitions, shuffle = true)
+}
+    \end{lstlisting}
+    \begin{itemize}
+        \item \textbf{Key Points}:
+        \begin{itemize}
+            \item \textbf{Shuffle}: Always performs a shuffle by calling `coalesce` with `shuffle = true`.
+            \item \textbf{Usage}: Suitable for both increasing and decreasing the number of partitions with even data distribution.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
 %
-%\begin{frame}
-%    \frametitle{High-Level Code: Repartition}
-%
-%        \begin{itemize}
-%            \item \textbf{Operation}: Calls `coalesce` with `shuffle = true`.
-%            \item \textbf{Process}: Full data shuffle across the network to redistribute data evenly.
-%            \item \textbf{Impact on Logs}:
-%            \begin{itemize}
-%                \item Increased log entries due to extensive shuffle operations.
-%                \item Higher overhead and cost.
-%                \item Useful for balancing load and increasing parallelism.
-%            \end{itemize}
-%        \end{itemize}
-%\end{frame}
-%
-%\begin{frame}
-%    \frametitle{High-Level Code: Repartition}
-%    \begin{itemize}
-%        \item Shuffling Logic (If shuffle is true):
-%
-%            \begin{itemize}
-%                \item Data is shuffled to distribute it evenly across the new partitions.
-%                \item Each item is assigned a new partition based on a random function.
-%                \item A new RDD is created with the shuffled data and the specified number of partitions.
-%            \end{itemize}
-%        \end{itemize}
-%\end{frame}
-%
+\begin{frame}
+    \frametitle{High-Level Code: Repartition}
+
+        \begin{itemize}
+            \item \textbf{Operation}: Calls `coalesce` with `shuffle = true`.
+            \item \textbf{Process}: Full data shuffle across the network to redistribute data evenly.
+            \item \textbf{Impact on Logs}:
+            \begin{itemize}
+                \item Increased log entries due to extensive shuffle operations.
+                \item Higher overhead and cost.
+                \item Useful for balancing load and increasing parallelism.
+            \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{High-Level Code: Repartition}
+    \begin{itemize}
+        \item Shuffling Logic (If shuffle is true):
+            \begin{itemize}
+                \item Data is shuffled to distribute it evenly across the new partitions.
+                \item Each item is assigned a new partition based on a random function.
+                \item A new RDD is created with the shuffled data and the specified number of partitions.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
 %\begin{frame}[fragile]
 %    \frametitle{High-Level Code: Coalesce}
 %
